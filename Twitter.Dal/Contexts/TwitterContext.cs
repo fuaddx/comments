@@ -50,7 +50,6 @@ namespace Twitter.Dal.Contexts
                 .HasOne(bt => bt.Topic)
                 .WithMany(t => t.BlogTopics)
                 .HasForeignKey(bt => bt.TopicId);
-
             base.OnModelCreating(modelBuilder);
         }
     }

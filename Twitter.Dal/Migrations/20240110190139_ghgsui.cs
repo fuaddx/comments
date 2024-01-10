@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Twitter.Dal.Migrations
 {
     /// <inheritdoc />
-    public partial class Dwit2 : Migration
+    public partial class ghgsui : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -63,7 +63,7 @@ namespace Twitter.Dal.Migrations
                     Author = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     UpdatedCount = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
                     Title = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 1, 8, 8, 37, 22, 97, DateTimeKind.Utc).AddTicks(3819)),
+                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 1, 10, 19, 1, 38, 872, DateTimeKind.Utc).AddTicks(694)),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -78,7 +78,7 @@ namespace Twitter.Dal.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
-                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 1, 8, 12, 37, 22, 97, DateTimeKind.Local).AddTicks(9812)),
+                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 1, 10, 23, 1, 38, 872, DateTimeKind.Local).AddTicks(8727)),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>

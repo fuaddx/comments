@@ -10,6 +10,6 @@ namespace Twitter.Business.ExternalServices.Interfaces
 {
     public interface ITokenService
     {
-        TokenDto CreateToken(AppUser user);
+        TokenDto CreateToken(TokenParamsDto dto);
     }
 }

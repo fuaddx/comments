@@ -46,7 +46,10 @@ namespace Twitter.Business.Services.Implements
             {
                 throw new UsreNameorEmailWrongException();
             }
-            return _tokenService.CreateToken(user);
+            return _tokenService.CreateToken(new TokenParamsDto
+            {
+                User =user,
+            });
         }
     }
 }

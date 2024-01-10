@@ -21,6 +21,7 @@ namespace Twitter.Business
        public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<ITopicRepository, TopicRepository>();
+            services.AddScoped<IPostRepository, PostRepository>();
             return services;
         }
         public  static IServiceCollection AddServices(this IServiceCollection services)
@@ -38,6 +39,7 @@ namespace Twitter.Business
             services.AddScoped<IBlogService, BlogService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IPostService, PostService>();
             return services;
         }
         public static IServiceCollection AddBlogBusinessLayer(this IServiceCollection services)

@@ -12,8 +12,8 @@ using Twitter.Dal.Contexts;
 namespace Twitter.Dal.Migrations
 {
     [DbContext(typeof(TwitterContext))]
-    [Migration("20240108083722_Dwit2")]
-    partial class Dwit2
+    [Migration("20240110190139_ghgsui")]
+    partial class ghgsui
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -257,7 +257,7 @@ namespace Twitter.Dal.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 8, 8, 37, 22, 97, DateTimeKind.Utc).AddTicks(3819));
+                        .HasDefaultValue(new DateTime(2024, 1, 10, 19, 1, 38, 872, DateTimeKind.Utc).AddTicks(694));
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -341,7 +341,7 @@ namespace Twitter.Dal.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 8, 12, 37, 22, 97, DateTimeKind.Local).AddTicks(9812));
+                        .HasDefaultValue(new DateTime(2024, 1, 10, 23, 1, 38, 872, DateTimeKind.Local).AddTicks(8727));
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");

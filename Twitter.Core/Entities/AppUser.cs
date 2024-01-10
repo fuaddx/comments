@@ -9,9 +9,9 @@ namespace Twitter.Core.Entities
 {
     public class AppUser : IdentityUser
     {
-        public string Name { get; set; }
-        public string Surname { get; set; }
+        public string? Name { get; set; }
+        public string? Surname { get; set; }
         public DateTime BirthDay { get; set; }
-
+        public IEnumerable<Post> Posts { get; set; }
     }
 }

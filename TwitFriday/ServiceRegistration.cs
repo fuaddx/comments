@@ -11,7 +11,7 @@ namespace TwitFriday
            services.AddIdentity<AppUser, IdentityRole>(options =>
             {
                 // Password settings.
-                /*options.SignIn.RequireConfirmedEmail = true;*/
+                options.SignIn.RequireConfirmedEmail = true;
                 options.Password.RequireDigit = true;
                 options.Password.RequireLowercase = true;
                 options.Password.RequireNonAlphanumeric = true;

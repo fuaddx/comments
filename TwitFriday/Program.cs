@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
+using Twitter.Core.Enums;
+/*using TwitFriday.Helpers;*/
 namespace TwitFriday
 {
     public class Program
@@ -21,7 +23,7 @@ namespace TwitFriday
 
             // Add services to the container.
             builder.Services.AddControllers();
-            builder.Services.AddDbContext<TwitterContext>(opt =>
+            builder.Services.AddDbContext<TwitterContext>(opt =>    
             {
                 opt.UseSqlServer(builder.Configuration.GetConnectionString("MSSql"));
             });
@@ -41,6 +43,8 @@ namespace TwitFriday
             builder.Services.AddBlogBusinessLayer();
             //AddEmail
             builder.Services.AddEmail();
+            //HttpcontextAccessor
+            builder.Services.AddHttpContextAccessor();
 
            
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -98,7 +102,8 @@ namespace TwitFriday
                     c.ConfigObject.AdditionalItems.Add("persistAuthorization", "true");
                 });
             }
-
+            app.UseHttpsRedirection();
+            /*app.UseSeedData();*/
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();

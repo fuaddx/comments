@@ -23,13 +23,14 @@ namespace Twitter.Business.ExternalServices.Implements
             _configuration = configuration;
         }
 
-        public TokenDto CreateToken(AppUser user)
+        public TokenDto CreateToken(TokenParamsDto dto)
         {
             List<Claim> claims = new List<Claim>();
-            claims.Add(new Claim(ClaimTypes.Name, user.UserName));
-            claims.Add(new Claim(ClaimTypes.Surname, user.Surname));
-            claims.Add(new Claim(ClaimTypes.GivenName, user.Name));
-            claims.Add(new Claim("Test", user.BirthDay.ToString()));
+            claims.Add(new Claim(ClaimTypes.Name, dto.User.UserName));
+            claims.Add(new Claim(ClaimTypes.Surname, dto.User.Surname));
+            claims.Add(new Claim(ClaimTypes.NameIdentifier, dto.User.Id));
+            claims.Add(new Claim(ClaimTypes.GivenName, dto.User.Name));
+            claims.Add(new Claim("Test", dto.User.BirthDay.ToString()));
             SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
             SigningCredentials cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
             DateTime expires = DateTime.UtcNow.AddMinutes(Convert.ToInt32(_configuration.GetSection("Jwt")?["ExpireMin"]));
