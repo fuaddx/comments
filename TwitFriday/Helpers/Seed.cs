@@ -1,4 +1,4 @@
-﻿/*using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
 using Twitter.Core.Entities;
@@ -71,4 +71,3 @@ namespace TwitFriday.Helpers
         }
     }
 }
-*/

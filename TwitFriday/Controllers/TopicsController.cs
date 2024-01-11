@@ -40,7 +40,7 @@ namespace TwitFriday.Controllers
         {
             _service = service;
         }
-        [Authorize(AuthenticationSchemes ="Bearer")]
+        /*[Authorize(AuthenticationSchemes ="Bearer")]*/
         [HttpGet]
         public IActionResult Get()
         {

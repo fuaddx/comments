@@ -10,6 +10,7 @@ namespace Twitter.Business.Dtos.PostDtos
     public class PostCreateDto
     {
         public string Content { get; set; }
+        public string AuthorName { get; set; }
     }
     public class PostCreateDtoValidator : AbstractValidator<PostCreateDto> 
     {

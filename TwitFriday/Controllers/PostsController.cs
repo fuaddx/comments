@@ -49,5 +49,11 @@ namespace TwitFriday.Controllers
             await _service.RemoveAsync(id);
             return Ok();
         }
+        [HttpDelete("SoftDelete")]
+        public async Task<IActionResult>SoftDelete(int id)
+        {
+            await _service.DeleteAsync(id);
+            return Ok();
+        }
     }
 }

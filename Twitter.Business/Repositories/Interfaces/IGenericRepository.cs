@@ -18,5 +18,6 @@ namespace Twitter.Business.Repositories.Interfaces
         Task CreateAsync(T data);
         void Remove(T data);
         Task SaveAsync();
+        void Delete(T data);
     }
 }

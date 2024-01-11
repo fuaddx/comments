@@ -12,7 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
 using Twitter.Core.Enums;
-/*using TwitFriday.Helpers;*/
+using TwitFriday.Helpers;
 namespace TwitFriday
 {
     public class Program
@@ -96,6 +96,7 @@ namespace TwitFriday
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
+                app.UseSeedData();
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
                 {
@@ -103,7 +104,6 @@ namespace TwitFriday
                 });
             }
             app.UseHttpsRedirection();
-            /*app.UseSeedData();*/
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,8 +29,11 @@ namespace Twitter.Business.Services.Implements
         {
             _repo = repo;
             _contextAccessor = contextAccessor;
-            userId = _contextAccessor.HttpContext?.User.Claims.
+
+            userId = _contextAccessor.HttpContext?.User.Claims. 
              First(x => x.Type == ClaimTypes.NameIdentifier).Value ?? throw new NullReferenceException();
+
+
             _userManager = userManager;
             _mapper = mapper;
         }
@@ -46,6 +50,7 @@ namespace Twitter.Business.Services.Implements
             {
                 AppUserId = userId,
                 Content = dto.Content,
+                
             });
             await _repo.SaveAsync();
         }
@@ -73,6 +78,13 @@ namespace Twitter.Business.Services.Implements
             _repo.Remove(data);
             await _repo.SaveAsync();
         }
-       
+
+        public async Task DeleteAsync(int id)
+        {
+            var data = await _checkId(id);
+            if(data== null) throw new NotFoundException<Topic>();
+             _repo.Delete(data); 
+            await _repo.SaveAsync();
+        }
     }
 }

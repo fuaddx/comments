@@ -14,15 +14,16 @@ using Twitter.Core.Entity.Common;
 
 namespace Twitter.Dal.Contexts
 {
-    public class TwitterContext : IdentityDbContext<AppUser>
+    public class TwitterContext : IdentityDbContext
     {
         public TwitterContext(DbContextOptions options) : base(options)
         {
         }
         public DbSet<Topic>Topics { get; set; }
-        public DbSet<AppUser>AppUsers { get; set; }
-        public DbSet<Blog>Blogs { get; set; }
-        public DbSet<Files>Files { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Files> Files { get; set; }
+        public DbSet<Post> Posts { get; set; }
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             var entries = ChangeTracker.Entries<BaseEntity>();
@@ -50,6 +51,7 @@ namespace Twitter.Dal.Contexts
                 .HasOne(bt => bt.Topic)
                 .WithMany(t => t.BlogTopics)
                 .HasForeignKey(bt => bt.TopicId);
+            
             base.OnModelCreating(modelBuilder);
         }
     }

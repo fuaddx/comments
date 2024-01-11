@@ -14,5 +14,6 @@ namespace Twitter.Business.Services.Interfaces
         Task Create(PostCreateDto dto);
         public Task RemoveAsync(int id);
         public Task UpdateAsync(int id, PostUpdateDto dto);
+        public Task DeleteAsync(int id);
     }
 }

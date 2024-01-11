@@ -6,8 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Twitter.Business.Dtos.PostDtos;
 using Twitter.Business.Dtos.TopicDtos;
+using Twitter.Core.Entities;
 using Twitter.Core.Entity;
-using Twitter.Dal.Migrations;
+
 
 namespace Twitter.Business.Profiles
 {

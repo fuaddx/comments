@@ -41,10 +41,15 @@ namespace Twitter.Business.Repositories.Implements
         {
             Table.Remove(data); 
         }
-
+        public void Delete(T data) { 
+            var book = _db.Posts.Where(b=>!b.IsDeleted).ToList();
+        }
         public async Task<T> GetByIdAsync(int id,bool noTracking=true)
         {
+
             return noTracking ? await Table.AsNoTracking().SingleOrDefaultAsync(t => t.Id == id) : await Table.FindAsync(id);
         }
+
+        
     }
 }

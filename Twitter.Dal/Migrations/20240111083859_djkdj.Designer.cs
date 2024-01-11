@@ -12,8 +12,8 @@ using Twitter.Dal.Contexts;
 namespace Twitter.Dal.Migrations
 {
     [DbContext(typeof(TwitterContext))]
-    [Migration("20240110190139_ghgsui")]
-    partial class ghgsui
+    [Migration("20240111083859_djkdj")]
+    partial class djkdj
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -75,6 +75,80 @@ namespace Twitter.Dal.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -158,84 +232,6 @@ namespace Twitter.Dal.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Twitter.Core.Entities.AppUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("BirthDay")
-                        .HasColumnType("date");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers", (string)null);
-                });
-
             modelBuilder.Entity("Twitter.Core.Entities.Blog", b =>
                 {
                     b.Property<int>("Id")
@@ -257,7 +253,7 @@ namespace Twitter.Dal.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 10, 19, 1, 38, 872, DateTimeKind.Utc).AddTicks(694));
+                        .HasDefaultValue(new DateTime(2024, 1, 11, 8, 38, 59, 107, DateTimeKind.Utc).AddTicks(2705));
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -330,6 +326,48 @@ namespace Twitter.Dal.Migrations
                     b.ToTable("Files");
                 });
 
+            modelBuilder.Entity("Twitter.Core.Entities.Post", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("AuthorName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(512)
+                        .HasColumnType("nvarchar(512)");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("UpdatedCount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<DateTime>("UpdatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("Posts");
+                });
+
             modelBuilder.Entity("Twitter.Core.Entity.Topic", b =>
                 {
                     b.Property<int>("Id")
@@ -341,7 +379,7 @@ namespace Twitter.Dal.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 10, 23, 1, 38, 872, DateTimeKind.Local).AddTicks(8727));
+                        .HasDefaultValue(new DateTime(2024, 1, 11, 12, 38, 59, 108, DateTimeKind.Local).AddTicks(1202));
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -356,6 +394,26 @@ namespace Twitter.Dal.Migrations
                     b.ToTable("Topics");
                 });
 
+            modelBuilder.Entity("Twitter.Core.Entities.AppUser", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<DateTime>("BirthDay")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.HasDiscriminator().HasValue("AppUser");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -367,7 +425,7 @@ namespace Twitter.Dal.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Twitter.Core.Entities.AppUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -376,7 +434,7 @@ namespace Twitter.Dal.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Twitter.Core.Entities.AppUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -391,7 +449,7 @@ namespace Twitter.Dal.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Twitter.Core.Entities.AppUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -400,7 +458,7 @@ namespace Twitter.Dal.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Twitter.Core.Entities.AppUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -437,6 +495,17 @@ namespace Twitter.Dal.Migrations
                     b.Navigation("Blog");
                 });
 
+            modelBuilder.Entity("Twitter.Core.Entities.Post", b =>
+                {
+                    b.HasOne("Twitter.Core.Entities.AppUser", "AppUser")
+                        .WithMany("Posts")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+                });
+
             modelBuilder.Entity("Twitter.Core.Entities.Blog", b =>
                 {
                     b.Navigation("BlogTopics");
@@ -447,6 +516,11 @@ namespace Twitter.Dal.Migrations
             modelBuilder.Entity("Twitter.Core.Entity.Topic", b =>
                 {
                     b.Navigation("BlogTopics");
+                });
+
+            modelBuilder.Entity("Twitter.Core.Entities.AppUser", b =>
+                {
+                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }
