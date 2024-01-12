@@ -14,5 +14,6 @@ namespace Twitter.Core.Entities
         public string AppUserId { get; set; }
         public string AuthorName { get; set; }
         public AppUser AppUser { get; set; }
+        public IEnumerable<Comment> Comments { get; set; }
     }
 }

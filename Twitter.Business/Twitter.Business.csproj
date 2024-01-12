@@ -7,11 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Dtos\AppUserDtos\**" />
     <Compile Remove="Dtos\TokenDtos\**" />
-    <EmbeddedResource Remove="Dtos\AppUserDtos\**" />
     <EmbeddedResource Remove="Dtos\TokenDtos\**" />
-    <None Remove="Dtos\AppUserDtos\**" />
     <None Remove="Dtos\TokenDtos\**" />
   </ItemGroup>
 

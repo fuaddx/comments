@@ -12,8 +12,8 @@ using Twitter.Dal.Contexts;
 namespace Twitter.Dal.Migrations
 {
     [DbContext(typeof(TwitterContext))]
-    [Migration("20240111083859_djkdj")]
-    partial class djkdj
+    [Migration("20240112084608_KeyForiegn")]
+    partial class KeyForiegn
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -253,7 +253,7 @@ namespace Twitter.Dal.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 11, 8, 38, 59, 107, DateTimeKind.Utc).AddTicks(2705));
+                        .HasDefaultValue(new DateTime(2024, 1, 12, 8, 46, 8, 391, DateTimeKind.Utc).AddTicks(7230));
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -286,6 +286,46 @@ namespace Twitter.Dal.Migrations
                     b.HasIndex("TopicId");
 
                     b.ToTable("BlogTopic");
+                });
+
+            modelBuilder.Entity("Twitter.Core.Entities.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ParentCommentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PostId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("ParentCommentId");
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("Twitter.Core.Entities.Files", b =>
@@ -379,7 +419,7 @@ namespace Twitter.Dal.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 1, 11, 12, 38, 59, 108, DateTimeKind.Local).AddTicks(1202));
+                        .HasDefaultValue(new DateTime(2024, 1, 12, 12, 46, 8, 393, DateTimeKind.Local).AddTicks(468));
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -484,6 +524,32 @@ namespace Twitter.Dal.Migrations
                     b.Navigation("Topic");
                 });
 
+            modelBuilder.Entity("Twitter.Core.Entities.Comment", b =>
+                {
+                    b.HasOne("Twitter.Core.Entities.AppUser", "AppUser")
+                        .WithMany("Comments")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Twitter.Core.Entities.Comment", "ParentComment")
+                        .WithMany("Childs")
+                        .HasForeignKey("ParentCommentId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Twitter.Core.Entities.Post", "Post")
+                        .WithMany("Comments")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("ParentComment");
+
+                    b.Navigation("Post");
+                });
+
             modelBuilder.Entity("Twitter.Core.Entities.Files", b =>
                 {
                     b.HasOne("Twitter.Core.Entities.Blog", "Blog")
@@ -513,6 +579,16 @@ namespace Twitter.Dal.Migrations
                     b.Navigation("Files");
                 });
 
+            modelBuilder.Entity("Twitter.Core.Entities.Comment", b =>
+                {
+                    b.Navigation("Childs");
+                });
+
+            modelBuilder.Entity("Twitter.Core.Entities.Post", b =>
+                {
+                    b.Navigation("Comments");
+                });
+
             modelBuilder.Entity("Twitter.Core.Entity.Topic", b =>
                 {
                     b.Navigation("BlogTopics");
@@ -520,6 +596,8 @@ namespace Twitter.Dal.Migrations
 
             modelBuilder.Entity("Twitter.Core.Entities.AppUser", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618

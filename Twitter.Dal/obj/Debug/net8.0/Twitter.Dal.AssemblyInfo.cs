@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Twitter.Dal")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d26a4b344997c1d9cb6f1f80f63a6a533f1224a1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+626e31e06355c17ef05c4a454feeab70723303f1")]
 [assembly: System.Reflection.AssemblyProductAttribute("Twitter.Dal")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Twitter.Dal")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
